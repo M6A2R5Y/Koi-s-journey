@@ -1,0 +1,30 @@
+# Agent temporary files
+.tmp/
+
+# Environment and API Secrets
+.env
+credentials.json
+token.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules
+
+# Production
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
