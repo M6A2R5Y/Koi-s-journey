@@ -131,6 +131,67 @@ You may keep `directives/` temporarily for backwards compatibility, but the cano
 
 ---
 
+## Git Branching & Commit Workflow
+
+After completing any piece of work — a feature, a fix, or an improvement — you **must** commit your changes following this branching model. **Never commit directly to `main`.**
+
+### Branch Hierarchy
+
+```
+feature/<name>  →  staging  →  main
+```
+
+| Branch | Purpose | Rules |
+|---|---|---|
+| `feature/<name>` | All new work is done here | One branch per feature/fix. Name it descriptively, e.g. `feature/mobile-responsive-layout` |
+| `staging` | Integration & review layer | Feature branches are merged here first for testing and review |
+| `main` | Production / stable code | Only receives merges from `staging`. Never commit directly. |
+
+### Step-by-Step Commit Rules
+
+1. **Start a new feature branch from `staging`** (never from `main`):
+   ```bash
+   git checkout staging
+   git pull origin staging
+   git checkout -b feature/<descriptive-name>
+   ```
+
+2. **Work and commit incrementally** on the feature branch:
+   ```bash
+   git add .
+   git commit -m "feat: <short description of what changed>"
+   ```
+   Use conventional commit prefixes: `feat:`, `fix:`, `chore:`, `docs:`, `style:`, `refactor:`.
+
+3. **When the feature is complete, merge into `staging`**:
+   ```bash
+   git checkout staging
+   git merge feature/<descriptive-name>
+   git push origin staging
+   ```
+
+4. **After review/testing passes on `staging`, promote to `main`**:
+   ```bash
+   git checkout main
+   git merge staging
+   git push origin main
+   ```
+
+5. **Clean up the feature branch** after a successful merge:
+   ```bash
+   git branch -d feature/<descriptive-name>
+   ```
+
+### Hard Rules
+
+- ❌ **Never** `git commit` or `git push` directly to `main`.
+- ❌ **Never** create a feature branch from `main` — always branch from `staging`.
+- ✅ Every completed feature or fix must have its own `feature/` branch.
+- ✅ `staging` is the only branch that can merge into `main`.
+- ✅ Commit messages must be clear and describe *what changed and why*.
+
+---
+
 ## Summary
 
 You sit between human intent (Skills) and deterministic execution (scripts/tools).    
