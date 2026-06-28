@@ -11,12 +11,18 @@ import {
   Mail, 
   Award,
   Terminal,
-  Compass
+  Compass,
+  Menu,
+  X
 } from 'lucide-react';
 
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
+  const closeSidebar = () => setSidebarOpen(false);
+  const navigateTo = (tabId: string) => { setActiveTab(tabId); closeSidebar(); };
 
   // Dark/Light Theme Handler
   useEffect(() => {
@@ -128,18 +134,18 @@ export default function App() {
     : [];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'inherit' }}>
-      
+    <div className="app-shell">
+
+      {/* Mobile sidebar backdrop */}
+      <div
+        className={`sidebar-backdrop glass-panel${sidebarOpen ? ' backdrop-visible' : ''}`}
+        onClick={closeSidebar}
+        aria-hidden="true"
+        style={{ borderRadius: 0, border: 'none', boxShadow: 'none', backdropFilter: 'none' }}
+      />
+
       {/* Sidebar Navigation */}
-      <aside className="glass-panel" style={{
-        width: '280px',
-        padding: '2rem 1.5rem',
-        margin: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem',
-        borderRight: '1px solid var(--border-color)'
-      }}>
+      <aside className={`glass-panel sidebar${sidebarOpen ? ' sidebar-open' : ''}`}>
         <div>
           <h2 className="gradient-text" style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '-0.5px' }}>
             MARY K.
@@ -159,7 +165,7 @@ export default function App() {
           ].map(tab => (
             <button 
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => navigateTo(tab.id)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -205,11 +211,20 @@ export default function App() {
       </aside>
 
       {/* Main Content Area */}
-      <main style={{ flex: 1, padding: '2rem 3rem 2rem 1rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <main className="main-content">
         
         {/* Header */}
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
+        <header className="page-header">
+          {/* Hamburger – mobile only */}
+          <button
+            className="hamburger-btn"
+            onClick={() => setSidebarOpen(o => !o)}
+            aria-label="Toggle navigation"
+          >
+            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+
+          <div style={{ flex: 1 }}>
             <h1 style={{ fontSize: '2rem', fontWeight: '700', letterSpacing: '-0.5px' }}>
               {activeTab === 'dashboard' && 'Welcome to the Control Center'}
               {activeTab === 'experience' && 'Professional Career Track'}
@@ -231,7 +246,7 @@ export default function App() {
         {activeTab === 'dashboard' && (
           <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {/* Quick Stats Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+            <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
               <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: '600' }}>ACADEMICS</span>
                 <span style={{ fontSize: '1.4rem', fontWeight: '700' }}>B.Sc. Math & Comp Sci</span>
@@ -325,7 +340,7 @@ export default function App() {
               }
             ].map((exp, idx) => (
               <div key={idx} className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="exp-header">
                   <h3 style={{ fontWeight: '700', fontSize: '1.15rem' }}>{exp.role}</h3>
                   <span style={{ color: 'var(--accent-primary)', fontWeight: '600', fontSize: '0.85rem' }}>{exp.period}</span>
                 </div>
@@ -350,11 +365,12 @@ export default function App() {
               </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="nfc-grid">
               {/* Animation Graphic Panel */}
               <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', gap: '1.5rem' }}>
                 {/* SVG Visualizing the flow */}
-                <svg width="280" height="120" viewBox="0 0 280 120" style={{ overflow: 'visible' }}>
+                <div className="nfc-svg-wrapper" style={{ width: '100%', maxWidth: '300px' }}>
+                <svg width="280" height="120" viewBox="0 0 280 120" style={{ overflow: 'visible', width: '100%', height: 'auto' }}>
                   {/* Tag Node */}
                   <g transform="translate(40, 60)">
                     <circle r="30" fill={nfcStep >= 2 ? 'var(--accent-primary)' : 'var(--bg-tertiary)'} stroke="var(--border-color)" strokeWidth="2" style={{ transition: 'all 0.3s' }} />
@@ -379,6 +395,7 @@ export default function App() {
                     <text textAnchor="middle" y="5" fill={nfcStep >= 4 ? '#ffffff' : 'var(--text-secondary)'} fontSize="11" fontWeight="bold">Database</text>
                   </g>
                 </svg>
+                </div>
 
                 {/* Status Indicator */}
                 <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -520,7 +537,7 @@ export default function App() {
 
         {/* Skills Tab Content */}
         {activeTab === 'skills' && (
-          <div className="animate-fade-in" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '1.5rem' }}>
+          <div className="animate-fade-in skills-grid">
             {/* Left side: Skills breakdown */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="glass-panel" style={{ padding: '1.5rem' }}>
