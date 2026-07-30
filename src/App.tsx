@@ -9,6 +9,7 @@ import {
   ArrowRight, 
   CheckCircle, 
   Mail, 
+  Phone,
   Award,
   Terminal,
   Compass,
@@ -147,10 +148,13 @@ export default function App() {
       {/* Sidebar Navigation */}
       <aside className={`glass-panel sidebar${sidebarOpen ? ' sidebar-open' : ''}`}>
         <div>
-          <h2 className="gradient-text" style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '-0.5px' }}>
-            MARY K.
+          <h2 className="gradient-text" style={{ fontSize: '1.4rem', fontWeight: '800', letterSpacing: '-0.5px' }}>
+            MARY KINYANJUI
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.2rem' }}>
+          <p style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: '600', marginTop: '0.2rem' }}>
+            Remote Customer Support & Operations Specialist
+          </p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '0.1rem' }}>
             B.Sc. Mathematics & CS
           </p>
         </div>
@@ -270,7 +274,7 @@ export default function App() {
             <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: '600' }}>About Mary Kinyanjui</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                I am a professional with over 1 year of experience in customer care and operations support, backed by a strong academic foundation in Mathematics and Computer Science. I combine creative problem-solving, digital record management, and technical troubleshooting to build efficient service flows and secure systems.
+                Remote-ready customer support and operations professional with a track record across BPO, education-tech, and multi-country freelance environments. Comfortable owning inbound/outbound communication, CRM documentation, and process coordination independently, with 99% data accuracy and consistent on-time delivery. Strong technical foundation (BSc Mathematics & Computer Science) supports fast tool adoption and confident troubleshooting — ideal for distributed, async teams.
               </p>
               <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
                 <button 
@@ -311,31 +315,35 @@ export default function App() {
           <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {[
               {
-                role: 'Customer Expert',
-                company: 'Teleperformance EPZ MAJOREL',
+                role: 'Operations Customer Expert',
+                company: 'Teleperformance EPZ Majorel — Mombasa, Kenya',
                 period: 'Feb 2026 - Present',
                 bullets: [
-                  'Managed high-volume inbound customer calls and emails, ensuring professional and courteous service delivery.',
-                  'Responded to customer inquiries, complaints, and requests while maintaining accuracy and compliance with service guidelines.'
+                  'Handle outbound calls and emails daily, maintaining professional and timely communication with customers.',
+                  'Resolve customer inquiries on first contact, improving satisfaction scores.',
+                  'Coordinate escalations and maintain accurate weekly case documentation.',
+                  'Balance multiple priorities while consistently meeting strict service-level KPIs.'
                 ]
               },
               {
                 role: 'School Lead',
-                company: 'Bridge Talent; Food For Education',
+                company: 'Bridge Talent; Food For Education — Mombasa, Kenya',
                 period: 'Oct 2025 - Jan 2026',
                 bullets: [
-                  'Managed and maintained student and parent records through accurate data entry and updates.',
-                  'Responded to parent and student inquiries, providing first-line customer support and issue resolution.',
-                  'Managed NFC tag activation, verification, and screening processes for service operations.'
+                  'Managed and updated student and parent records, ensuring accuracy and compliance.',
+                  'Responded to inquiries with a 90% resolution rate within 24 hours.',
+                  'Oversaw NFC tag activation and verification for service users, streamlining operations.',
+                  'Anticipated and resolved issues proactively, reducing service delays.'
                 ]
               },
               {
                 role: 'Freelance Administrative & Operations Assistant',
-                company: 'Remote',
+                company: 'Remote — Clients across 3 countries',
                 period: 'Mar 2023 - Aug 2024',
                 bullets: [
-                  'Provided administrative and operational support remotely.',
-                  'Performed data entry, verification, and record management.'
+                  'Provided administrative support for multiple international clients, ensuring timely task completion.',
+                  'Performed data entry and record management with a 99% accuracy rate.',
+                  'Supported project coordination and documentation, contributing to on-time delivery of 10+ projects.'
                 ]
               }
             ].map((exp, idx) => (
@@ -541,29 +549,24 @@ export default function App() {
             {/* Left side: Skills breakdown */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="glass-panel" style={{ padding: '1.5rem' }}>
-                <h3 style={{ fontWeight: '600', marginBottom: '1rem' }}>Expertise & Capabilities</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <h3 style={{ fontWeight: '600', marginBottom: '1.25rem' }}>Key Skills & Competencies</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {[
-                    'Customer support- Phone & Email',
-                    'Data Entry & Accurate Documentation',
-                    'CRM & Digital Record Management',
-                    'Microsoft Word & Excel',
-                    'Active Listening & Communication',
-                    'Multitasking & Time Management',
-                    'Team Collaboration',
-                    'Administrative & Operations Support'
+                    { title: 'Remote Collaboration', desc: 'Async communication, CRM/ticketing systems, cross-timezone coordination' },
+                    { title: 'Customer Support', desc: 'Inbound/outbound calls & email, first-contact resolution, escalation handling' },
+                    { title: 'Operations', desc: 'Workflow management, documentation, records compliance, KPI tracking' },
+                    { title: 'Technical Tools', desc: 'Microsoft Word, Excel, PowerPoint, Outlook, CRM systems, internet-based platforms' },
+                    { title: 'Data & Accuracy', desc: 'Data entry, record management, reporting (99% accuracy across freelance projects)' },
+                    { title: 'Self-Management', desc: 'Multitasking and prioritizing independently in fast-paced, deadline-driven environments' }
                   ].map((skill, idx) => (
-                    <span key={idx} style={{
-                      padding: '0.4rem 0.8rem',
-                      borderRadius: '0.5rem',
-                      background: 'var(--bg-tertiary)',
-                      color: 'var(--text-secondary)',
-                      fontSize: '0.85rem',
-                      fontWeight: '500',
-                      border: '1px solid var(--border-color)'
-                    }}>
-                      {skill}
-                    </span>
+                    <div key={idx} style={{ borderBottom: idx < 5 ? '1px solid var(--border-color)' : 'none', paddingBottom: '0.75rem' }}>
+                      <span style={{ fontWeight: '700', color: 'var(--accent-primary)', display: 'block', fontSize: '0.95rem' }}>
+                        {skill.title}
+                      </span>
+                      <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.25rem', display: 'block' }}>
+                        {skill.desc}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -592,9 +595,13 @@ export default function App() {
                     <Mail size={16} style={{ color: 'var(--accent-primary)' }} />
                     <a href="mailto:kinyanjuimary516@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>kinyanjuimary516@gmail.com</a>
                   </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Phone size={16} style={{ color: 'var(--accent-emerald)' }} />
+                    <a href="tel:+254728238567" style={{ color: 'inherit', textDecoration: 'none' }}>+254 728 238 567</a>
+                  </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)' }}>
                     <Compass size={16} style={{ color: 'var(--accent-secondary)' }} />
-                    <span>Mombasa, Kenya</span>
+                    <span>Mombasa, Kenya (open to remote)</span>
                   </div>
                 </div>
               </div>
@@ -603,14 +610,20 @@ export default function App() {
                 <h3 style={{ fontWeight: '600' }}>Referees</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.85rem' }}>
                   <div>
-                    <div style={{ fontWeight: '700' }}>David Muriuki</div>
-                    <div style={{ color: 'var(--text-secondary)' }}>Teleperformance EPZ MAJOREL</div>
-                    <a href="mailto:david.muriuki@mj.teleperformance.com" style={{ color: 'var(--accent-primary)', textDecoration: 'none' }}>david.muriuki@mj.teleperformance.com</a>
+                    <div style={{ fontWeight: '700' }}>Caroline Mwania</div>
+                    <div style={{ color: 'var(--text-secondary)' }}>Teleperformance</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', marginTop: '0.2rem' }}>
+                      <a href="mailto:caroline.mwania@mj.teleperformance.com" style={{ color: 'var(--accent-primary)', textDecoration: 'none' }}>caroline.mwania@mj.teleperformance.com</a>
+                      <a href="tel:0116049712" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>0116049712</a>
+                    </div>
                   </div>
                   <div>
                     <div style={{ fontWeight: '700' }}>Jimmy Gitau</div>
                     <div style={{ color: 'var(--text-secondary)' }}>Bridge Talent Group</div>
-                    <a href="mailto:jimmy@bridgetalentgroup.com" style={{ color: 'var(--accent-primary)', textDecoration: 'none' }}>jimmy@bridgetalentgroup.com</a>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', marginTop: '0.2rem' }}>
+                      <a href="mailto:jimmy@bridgetalentgroup.com" style={{ color: 'var(--accent-primary)', textDecoration: 'none' }}>jimmy@bridgetalentgroup.com</a>
+                      <a href="tel:+254794768683" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>+254 794 768683</a>
+                    </div>
                   </div>
                 </div>
               </div>
